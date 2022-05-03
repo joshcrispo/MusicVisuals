@@ -77,7 +77,7 @@ public class Menu extends Visual {
             println(songs.length);
 
             if (song_index > songs.length - 1) {
-                song_index -= 1;
+                song_index = 0;
             }
 
             play_music();
@@ -90,7 +90,7 @@ public class Menu extends Visual {
 
             song_index -= 1;
             if (song_index < 0) {
-                song_index += 1;
+                song_index = 2;
             }
 
             play_music();
