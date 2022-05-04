@@ -294,6 +294,9 @@ public class Menu extends Visual {
         vertex(cx-20, cy/3);
         endShape();
         
+        
+        textSize(20);
+        text(mouseY, cx,cy+100);
         //speakers
         //speaker left
         rectMode(CORNER);
