@@ -46,7 +46,7 @@ public class Stage
         int m = menu.millis();
         m = menu.millis()-last;
 
-        float secondsToY = PApplet.map(m/10, 0, menu.getFrameSize(),0,465);
+        float secondsToY = PApplet.map(m/10, 0, menu.ab.size(),0,465);
         
         // Calculate sum and average of the samples
         // Also lerp each element of buffer;
@@ -229,20 +229,20 @@ public class Stage
             
         //speaker effects
         //left 
-        for(int i = 0 ; i < menu.getFrameSize() ; i +=20)
+        for(int i = 0 ; i < menu.ab.size() ; i +=20)
         {
             menu.noFill();
-            float c = PApplet.map(i, 0, menu.getFrameSize(), 0, 255);
+            float c = PApplet.map(i, 0, menu.ab.size(), 0, 255);
             menu.stroke(c, 255, 255);
             float f = menu.getAmplitude() * halfH * 3.0f;
             menu.arc(68, cy/3, f, f, 0, PConstants.TWO_PI);     
 
         }
         //right 
-        for(int i = 0 ; i < menu.getFrameSize() ; i +=20)
+        for(int i = 0 ; i < menu.ab.size() ; i +=20)
         {
             menu.noFill();
-            float c = PApplet.map(i, 0, menu.getFrameSize(), 0, 255);
+            float c = PApplet.map(i, 0, menu.ab.size(), 0, 255);
             menu.stroke(c, 255, 255);
             float f = menu.getAmplitude() * halfH * 3.0f;
             menu.arc(954, cy/3, f, f, 0, PConstants.TWO_PI);     
@@ -250,20 +250,20 @@ public class Stage
         }
         
         //small speaker effect left
-        for(int i = 0 ; i < menu.getFrameSize() ; i += 30)
+        for(int i = 0 ; i < menu.ab.size() ; i += 30)
         {
             menu.noFill();
-            float c = PApplet.map(i, 0, menu.getFrameSize(), 0, 255);
+            float c = PApplet.map(i, 0, menu.ab.size(), 0, 255);
             menu.stroke(c, 255, 255);
             float f = menu.getAmplitude() * halfH * 3.0f;
             menu.arc(190, cy/2+120, f, f, 0, PConstants.TWO_PI);     
 
         } 
         //small speaker effect right
-        for(int i = 0 ; i < menu.getFrameSize() ; i += 30)
+        for(int i = 0 ; i < menu.ab.size() ; i += 30)
         {
             menu.noFill();
-            float c = PApplet.map(i, 0, menu.getFrameSize(), 0, 255);
+            float c = PApplet.map(i, 0, menu.ab.size(), 0, 255);
             menu.stroke(c, 255, 255);
             float f = menu.getAmplitude() * halfH * 3.0f;
             menu.arc(menu.width-190, cy/2+120, f, f, 0, PConstants.TWO_PI);     
@@ -271,20 +271,22 @@ public class Stage
 
 
         //waves
-        for(int i = (int)stageEdgeLeft ; i < stageEdgeRight ; i +=8)
+        for(int i = (int)stageEdgeLeft ; i < stageEdgeRight ; i ++)
             {
-                //float c = map(ab.get(i), -1, 1, 0, 255);
-                float c = PApplet.map(i, 0, menu.ab.size(), 0, 255);
+                // float c = map(ab.get(i), -1, 1, 0, 255);
+                float c = PApplet.map(i - 25, 0, menu.ab.size(), 0, 255);
                 menu.stroke(c, 255, 255);
-                float f = lerpedBuffer[i] * halfH/3;
-                menu.line(i, halfH-100+ f, i, halfH-100 - f);                    
+                float f = lerpedBuffer[i] * 100/3.0f;
+                menu.line(i, halfH-100 + f, i, halfH-100 - f);
+                
+                      
             }
 
 
         //lasers
-        for(int i = 0; i<menu.getFrameSize();i+=120)
+        for(int i = 0; i<menu.ab.size();i+=120)
         { 
-            float c = PApplet.map(i, 0, menu.getFrameSize(), 0, 255);
+            float c = PApplet.map(i, 0, menu.ab.size(), 0, 255);
             menu.stroke(c, 255, 255);
             float f = menu.getAmplitude() * halfH * 4.0f;
             menu.line((cx/1.5f+((cx/7+cx/6)/2)-2),cx/2-70, menu.random(0, cx), menu.random(0 ,f-200));
@@ -298,7 +300,7 @@ public class Stage
         }
             if(m < 10200)
             {
-                for(int i = 0; i<menu.getFrameSize();i+=20)
+                for(int i = 0; i<menu.ab.size();i+=20)
                 { 
                     menu.stroke(255, 255, 255);
                     menu.line(cx,cy/3+45,i,secondsToY);

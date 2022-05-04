@@ -11,7 +11,7 @@ public class Robot {
 
     public void render(float x, float y) {
         float[] lerpedBuffer;
-        lerpedBuffer = new float[800];
+        lerpedBuffer = new float[menu.width];
         float sum = 0;
         double PI = 3.1415927;
 
@@ -122,14 +122,14 @@ public class Robot {
         menu.curveVertex(-33, -57);
         menu.endShape();
 
-        for (int i = 0; i < menu.ab.size(); i++) {
+        for (int i = 0; i < menu.ab.size()/4; i++) {
             sum += PApplet.abs(menu.ab.get(i));
             lerpedBuffer[i] = PApplet.lerp(lerpedBuffer[i], menu.ab.get(i), 0.05f);
         }
 
-        for (int i = 200; i < menu.ab.size(); i++) {
+        for (int i = 200; i < menu.ab.size()/4; i++) {
             // float c = map(ab.get(i), -1, 1, 0, 255);
-            float c = PApplet.map(i - 25, 0, menu.ab.size(), 0, 255);
+            float c = PApplet.map(i - 25, 0, menu.ab.size()/4, 0, 255);
             menu.stroke(c, 255, 255);
             float f = lerpedBuffer[i] * 100 * 4.0f;
             menu.line(-i + 268, -40 + f, -i + 268, -40 - f);
