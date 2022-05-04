@@ -13,7 +13,7 @@ public class Robot {
         float[] lerpedBuffer;
         lerpedBuffer = new float[menu.width];
         float sum = 0;
-        double PI = 3.1415927;
+        double PI = PApplet.PI;
 
         menu.pushMatrix();
         menu.fill(0);
